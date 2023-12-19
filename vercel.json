@@ -1,22 +1,19 @@
 {
-    "builds": [{
-        "src": "core/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    },
+  "version": 2,
+  "builds": [
     {
-        "src": "build_files.sh",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "staticfiles_build" }
-    }],
-    "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "core/wsgi.py"
-        }
-    ]
+      "src": "build_files.sh",  // Adjust the build script file name accordingly
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/build_files.sh"  // Adjust the build script file name accordingly
+    }
+  ],
+  "env": {
+    "PYENV_VERSION": "3.10.0"
+    // Add other environment variables your application needs
+  }
 }
