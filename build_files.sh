@@ -1,3 +1,13 @@
+#!/bin/bash
+
+# Install pyenv (if not already installed)
+curl https://pyenv.run | bash
+
+# Add pyenv to the PATH
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
 # Use Python 3.10
 python_version="3.10.0"
 
